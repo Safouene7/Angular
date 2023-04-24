@@ -1,12 +1,22 @@
-FROM node:latest
 
+FROM node:14.20
 
 WORKDIR /app
-COPY . .
+
+
+COPY package.json ./
 
 RUN npm install
-RUn npm run build --prod
+
+COPY . .
+
+
+RUN ng build --prod
+
 
 EXPOSE 80
+
+CMD ["ng","--port", "80"]
+
 
 
